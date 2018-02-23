@@ -373,15 +373,18 @@ class Emotiv(object):
                     for col in row:
 
                         sensor_num = 0
-                        print(type(self.sensors))
+                        # print(type(self.sensors))
                         for i, v in enumerate(self.sensors):
-                            if sensor_num == plot_num and sensor_num == i:
+
+                            if sensor_num == plot_num :
                                 # record[i] = list(record[i])
+                                # print(np.append(record[i], self.sensors[v]['value']))
                                 record[i] = np.append(record[i], self.sensors[v]['value'])
+
                                 # record[i] = np.array(record[i])
                                 col.cla()
                                 col.plot(record[i][-50:-1])
-                                print(record)
+                                # print(record)
 
                         # for k in enumerate(self.sensors):
                         #     if sensor_num == plot_num:
@@ -484,14 +487,15 @@ class Emotiv(object):
                         #             col.cla()
                         #             col.plot(record_15_arr[-50:-1])
 
-                            # sensor_num = sensor_num + 1
+                            sensor_num = sensor_num + 1
                         plot_num = plot_num + 1
+                np.save('record.npy', record)
                 # record = np.array(record)
                 plt.draw()
                 plt.pause(0.03)
                 gevent.sleep(0.03)
 
-                np.save('record.npy', record)
+
                 # if iter % 50 == 0:  # save record_0~15 in npy
                 #     for save_numbering in range(16):
                 #         np.save('record_'+str(save_numbering)+'.npy', record[sensor_numbering, sensor_data])
