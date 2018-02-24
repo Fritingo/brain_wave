@@ -385,29 +385,6 @@ class Emotiv(object):
                 gevent.sleep(0.03)
 
 
-                # if iter % 50 == 0:  # save record_0~15 in npy
-                #     for save_numbering in range(16):
-                #         np.save('record_'+str(save_numbering)+'.npy', record[sensor_numbering, sensor_data])
-
-
-                    # np.save('record_0.npy', record_0)
-                    # np.save('record_1.npy', record_1)
-                    # np.save('record_2.npy', record_2)
-                    # np.save('record_3.npy', record_3)
-                    # np.save('record_4.npy', record_4)
-                    # np.save('record_5.npy', record_5)
-                    # np.save('record_6.npy', record_6)
-                    # np.save('record_7.npy', record_7)
-                    # np.save('record_8.npy', record_8)
-                    # np.save('record_9.npy', record_9)
-                    # np.save('record_10.npy', record_10)
-                    # np.save('record_11.npy', record_11)
-                    # np.save('record_12.npy', record_12)
-                    # np.save('record_13.npy', record_13)
-                    # np.save('record_14.npy', record_14)
-                    # np.save('record_15.npy', record_15)
-
-
 # ============================================================ __MAIN__
 if __name__ == "__main__":
     a = Emotiv()
