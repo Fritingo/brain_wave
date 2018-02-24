@@ -14,7 +14,7 @@ for y in range(record.shape[1]):
             for col in row:
                 if x == plot_num:
                     col.cla()
-                    col.plot(record[x, y:(y+5)])
+                    col.plot(record[x, y:(y+6)])
                     # print(record[x, y:y+49])
                 plot_num += 1
                 print(plot_num)
