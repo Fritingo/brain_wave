@@ -5,7 +5,7 @@ record = np.load("record.npy")
 plt.ion()
 plt.show()
 fig, ax = plt.subplots(nrows=4, ncols=4)
-
+scalar = 4
 
 for y in range(record.shape[1]):
     for x in range(record.shape[0]):
@@ -14,7 +14,7 @@ for y in range(record.shape[1]):
             for col in row:
                 if x == plot_num:
                     col.cla()
-                    col.plot(record[x, y:(y+5)])
+                    col.plot(record[x, y:(y+scalar)])
                     # print(record[x, y:y+49])
                 plot_num += 1
                 print(plot_num)
