@@ -3,8 +3,9 @@ import matplotlib.pyplot as plt
 
 record = np.load("record.npy")
 plt.ion()
+fig, ax = plt.subplots(figsize=(10, 7), nrows=4, ncols=4)
 plt.show()
-fig, ax = plt.subplots(nrows=4, ncols=4)
+
 scalar = 4
 
 for y in range(record.shape[1]):
