@@ -371,123 +371,12 @@ class Emotiv(object):
                 plot_num = 0
                 for row in ax:
                     for col in row:
-
-                        sensor_num = 0
-                        # print(type(self.sensors))
                         for i, v in enumerate(self.sensors):
-
-                            if sensor_num == plot_num :
-                                # record[i] = list(record[i])
-                                # print(np.append(record[i], self.sensors[v]['value']))
+                            if i == plot_num:
                                 record[i] = np.append(record[i], self.sensors[v]['value'])
-
-                                # record[i] = np.array(record[i])
                                 col.cla()
                                 col.plot(record[i][-50:-1])
-                                # print(record)
 
-                        # for k in enumerate(self.sensors):
-                        #     if sensor_num == plot_num:
-                        #
-                        #         if sensor_num == 0:
-                        #
-                        #             record_0.append(self.sensors[k[1]]['value'])
-                        #             record_0_arr = np.array(record_0)
-                        #             col.cla()
-                        #             col.plot(record_0_arr[-50:-1])
-                        #
-                        #         elif sensor_num == 1:
-                        #             record_1.append(self.sensors[k[1]]['value'])
-                        #             record_1_arr = np.array(record_1)
-                        #             col.cla()
-                        #             col.plot(record_1_arr[-50:-1])
-                        #
-                        #         elif sensor_num == 2:
-                        #             record_2.append(self.sensors[k[1]]['value'])
-                        #             record_2_arr = np.array(record_2)
-                        #             col.cla()
-                        #             col.plot(record_2_arr[-50:-1])
-                        #
-                        #         elif sensor_num == 3:
-                        #
-                        #             record_3.append(self.sensors[k[1]]['value'])
-                        #             record_3_arr = np.array(record_3)
-                        #             col.cla()
-                        #             col.plot(record_3_arr[-50:-1])
-                        #         elif sensor_num == 4:
-                        #             record_4.append(self.sensors[k[1]]['value'])
-                        #             record_4_arr = np.array(record_4)
-                        #             col.cla()
-                        #             col.plot(record_4_arr[-50:-1])
-                        #
-                        #         elif sensor_num == 5:
-                        #             record_5.append(self.sensors[k[1]]['value'])
-                        #             record_5_arr = np.array(record_5)
-                        #             col.cla()
-                        #             col.plot(record_5_arr[-50:-1])
-                        #
-                        #         elif sensor_num == 6:
-                        #
-                        #             record_6.append(self.sensors[k[1]]['value'])
-                        #             record_6_arr = np.array(record_6)
-                        #             col.cla()
-                        #             col.plot(record_6_arr[-50:-1])
-                        #         elif sensor_num == 7:
-                        #             record_7.append(self.sensors[k[1]]['value'])
-                        #             record_7_arr = np.array(record_7)
-                        #             col.cla()
-                        #             col.plot(record_7_arr[-50:-1])
-                        #
-                        #         elif sensor_num == 8:
-                        #             record_8.append(self.sensors[k[1]]['value'])
-                        #             record_8_arr = np.array(record_8)
-                        #             col.cla()
-                        #             col.plot(record_8_arr[-50:-1])
-                        #
-                        #         elif sensor_num == 9:
-                        #
-                        #             record_9.append(self.sensors[k[1]]['value'])
-                        #             record_9_arr = np.array(record_9)
-                        #             col.cla()
-                        #             col.plot(record_9_arr[-50:-1])
-                        #         elif sensor_num == 10:
-                        #             record_10.append(self.sensors[k[1]]['value'])
-                        #             record_10_arr = np.array(record_10)
-                        #             col.cla()
-                        #             col.plot(record_10_arr[-50:-1])
-                        #
-                        #         elif sensor_num == 11:
-                        #             record_11.append(self.sensors[k[1]]['value'])
-                        #             record_11_arr = np.array(record_11)
-                        #             col.cla()
-                        #             col.plot(record_11_arr[-50:-1])
-                        #
-                        #         elif sensor_num == 12:
-                        #
-                        #             record_12.append(self.sensors[k[1]]['value'])
-                        #             record_12_arr = np.array(record_12)
-                        #             col.cla()
-                        #             col.plot(record_12_arr[-50:-1])
-                        #         elif sensor_num == 13:
-                        #             record_13.append(self.sensors[k[1]]['value'])
-                        #             record_13_arr = np.array(record_13)
-                        #             col.cla()
-                        #             col.plot(record_13_arr[-50:-1])
-                        #
-                        #         elif sensor_num == 14:
-                        #             record_14.append(self.sensors[k[1]]['value'])
-                        #             record_14_arr = np.array(record_14)
-                        #             col.cla()
-                        #             col.plot(record_14_arr[-50:-1])
-                        #
-                        #         elif sensor_num == 15:
-                        #
-                        #             record_15.append(self.sensors[k[1]]['value'])
-                        #             record_15_arr = np.array(record_15)
-                        #             col.cla()
-                        #             col.plot(record_15_arr[-50:-1])
-
-                            sensor_num = sensor_num + 1
                         plot_num = plot_num + 1
                 np.save('record.npy', record)
                 # record = np.array(record)
