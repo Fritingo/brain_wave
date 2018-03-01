@@ -38,23 +38,6 @@ battery_values = {
     225: [0], 224: [0]
 }
 
-record_0 = []
-record_1 = []
-record_2 = []
-record_3 = []
-record_4 = []
-record_5 = []
-record_6 = []
-record_7 = []
-record_8 = []
-record_9 = []
-record_10 = []
-record_11 = []
-record_12 = []
-record_13 = []
-record_14 = []
-record_15 = []
-
 record = np.zeros((16, 1))
 record = record.tolist()
 

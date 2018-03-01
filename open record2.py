@@ -14,11 +14,14 @@ x = np.arange(0, len(record[1]), 1)
 
 ax.set_title('Brain_wave')
 ax2 = fig.add_subplot(212)
-y=[]
+y = []
+
+
 for i in range(16):
-	y[i] = record[i]
-	ax.plot(x,y[i],'-')
-	ax2.plot(x,y[i],'-')
+    y.append(record[i])
+    ax.plot(x,y[i],'-')
+    ax2.plot(x,y[i],'-')
+line, = ax2.plot(x,y[0],'-')
 
 
 def onselect(xmin, xmax):
@@ -27,7 +30,7 @@ def onselect(xmin, xmax):
     indmax = min(len(x) - 1, indmax)
 
     thisx = x[indmin:indmax]
-    thisy = y[indmin:indmax]
+    thisy = y[0][indmin:indmax]
 
     line.set_data(thisx, thisy)
     ax2.set_xlim(thisx[0], thisx[-1])
