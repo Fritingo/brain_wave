@@ -10,21 +10,19 @@ record_t1 = np.load('record_t1.npy')
 #
 #
 #
-# a = text[0,1:4]
+# a = []
 # for k in range(0,3,1):
 #
 #     for i in range(1,8,1):#一維去頭去尾之512
 #         j = i+3
-#         a = np.concatenate((a,text[k,i:j]))
+#         a.append(text[k,i:j])
 #     for x in range(1, 8, 1):  # 一維去頭去尾之512
 #         y = x + 3
-#         a = np.concatenate((a,text2[k,x:y]))
+#         a.append(text2[k,x:y])
 #
-# b = text[0,1:4]
-# a = np.delete(a,b)
-# print(a)
+# a_arr=np.asarray(a)
 #
-# b = a.reshape(21,3,2)
+# b = a_arr.reshape(21,2,3)
 # print(b)
 # # #try===================================================================================================
 r_shape = np.shape(record_t1)
@@ -33,13 +31,13 @@ print(r_shape)
 
 
 
-a = record_t1[0,52:564]
+a = []
 # print(a)
 for k in range(0,15,1):  #ch
 
     for i in range(52,1588,1):#一維去頭去尾之512
         j = i+512
-        a = np.concatenate((a,record_t1[k,i:j]))
+        a.append(record_t1[k,i:j])
     # for x in range(1, 8, 1):  # 一維去頭去尾之512
     #     y = x + 3
     #     a = np.row_stack((a,record[k,x:y]))
@@ -52,11 +50,11 @@ for k in range(0,15,1):  #ch
     # for x4 in range(1, 8, 1):  # 一維去頭去尾之512
     #     y4 = x4 + 3
     #     a = np.row_stack((a,record[k,x4:y4]))
-b = record_t1[0,52:564]
-a = np.delete(a, b)
-print(a)
 
-a_shape = np.shape(a)
+
+print(a)
+a_arr = np.asarray(a)
+a_shape = np.shape(a_arr)
 print(a_shape)
-# b = a.reshape(16,,)
-# print(b)
+b = a_arr.reshape(16,1440,512)
+print(b)
