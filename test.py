@@ -25,24 +25,20 @@ if __name__ == "__main__":
     ch_num = 16
     class_num = 2
 
-    x_train = np.load('brain_wave_data.npy')
+    x = np.load('brain_wave_data.npy')
 
 
     # print(tight_data.shape)
     data_num = 7880
-    y_train = np.random.rand(data_num).round()
-    print(y_train)
-    print(np.shape(y_train))
-
-    x_train[0:3940, :, :]
-    y_train[0:3940] = 0
-
-    x_train[3941:7880, :, :]
-    y_train[3941:7880] = 1
+    y = np.random.rand(data_num).round()
+    y[0:3940] = 0
+    y[3940:7880] = 1
+    print(y)
+    print(np.shape(y))
 
 
     # modify to one hot array
-    y_train = keras.utils.to_categorical(y_train , class_num)
+    y = keras.utils.to_categorical(y, class_num)
     #y_test = keras.utils.to_categorical(y_test , class_num)
 
     # Build model
@@ -70,15 +66,15 @@ if __name__ == "__main__":
     plot_model(model, to_file='model.png', show_shapes=True)
 
     # Train the model
-    model.fit(x_train, y_train,
+    model.fit(x, y,
               # validation_data=(x_test, y_test),
-              validation_split=0.2,
+              validation_split=0.1,
               epochs=epoch,
               batch_size=batch_size,
               shuffle=True)
 
 
     # Evaluate
-    score = model.evaluate(x_test, y_test, verbose=0)
+    score = model.evaluate(x, y, verbose=0)
     print('Test loss:', score[0])
     print('Test accuracy:', score[1])
