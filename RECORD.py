@@ -201,45 +201,45 @@ class Emotiv(object):
                     print("\n", device.product_name, " Found!\n")
                     useDevice = input("Use this device? [Y]es? ")
 
-                    if useDevice.upper() == "Y":
-                        devicesUsed += 1
-                        devices.append(device)
-                        device.open()
-                        self.serial_number = device.serial_number
-                        device.set_raw_data_handler(self.handler)
+                    # if useDevice.upper() == "Y":
+                    devicesUsed += 1
+                    devices.append(device)
+                    device.open()
+                    self.serial_number = device.serial_number
+                    device.set_raw_data_handler(self.handler)
                 # elif device.product_name == 'EPOC BCI':
                 elif device.product_name == 'EEG Signals':
                     print("\n", device.product_name, " Found!\n")
                     useDevice = input("Use this device? [Y]es? ")
-                    if useDevice.upper() == "Y":
-                        devicesUsed += 1
-                        devices.append(device)
-                        device.open()
-                        self.serial_number = device.serial_number
-                        device.set_raw_data_handler(self.handler)
+                    # if useDevice.upper() == "Y":
+                    devicesUsed += 1
+                    devices.append(device)
+                    device.open()
+                    self.serial_number = device.serial_number
+                    device.set_raw_data_handler(self.handler)
                 elif device.product_name == '00000000000':
 
                     print("\n", device.product_name, " Found!\n")
                     useDevice = input("Use this device? [Y]es? ")
 
-                    if useDevice.upper() == "Y":
-                        devicesUsed += 1
-                        devices.append(device)
-                        device.open()
-                        self.serial_number = device.serial_number
-                        device.set_raw_data_handler(self.handler)
+                    # if useDevice.upper() == "Y":
+                    devicesUsed += 1
+                    devices.append(device)
+                    device.open()
+                    self.serial_number = device.serial_number
+                    device.set_raw_data_handler(self.handler)
                 # elif device.product_name == 'Emotiv RAW DATA':
                 elif device.product_name == 'EPOC+':
 
                     print("\n", device.product_name, " Found!\n")
                     useDevice = input("Use this device? [Y]es? ")
 
-                    if useDevice.upper() == "Y":
-                        devicesUsed += 1
-                        devices.append(device)
-                        device.open()
-                        self.serial_number = device.serial_number
-                        device.set_raw_data_handler(self.handler)
+                    # if useDevice.upper() == "Y":
+                    devicesUsed += 1
+                    devices.append(device)
+                    device.open()
+                    self.serial_number = device.serial_number
+                    device.set_raw_data_handler(self.handler)
 
             # devicesUsed += 1
             # devices.append(device)

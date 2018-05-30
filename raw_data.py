@@ -10,5 +10,5 @@ if __name__ == "__main__":
             if packet is not None:
                 # print(packet.sensors)
                 # print str(time.time() - t2) + "s"
-                # pass
+                pass
             time.sleep(0.001)
