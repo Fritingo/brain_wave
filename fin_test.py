@@ -13,20 +13,22 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 import winsound
+import time
 
 
 
 from keras.models import load_model
 
-model = load_model('BrainWave_n_modle.h5')
+model = load_model('re3-model.h5')
 
 new_record=[]
 
+
 # ===================================================================================轉三維
-
-reduce = [1060, 13201, 1984, 1240, 1598, 1815, 1260, 2241, 1107, 1195, 12682, 1141, 1373, 2938, 58, 14]
-add = [-579, -6518, -1266, -618, -903, -841, -594, -975, -639, -724, -6912, -625, -771, -772, -15, 16]
-
+# v_max = [7704.0, 1599.0, 2393.0, 1605.0, 7327.0, 4925.0, 1657.0, 7424.0, 6834.0, 7291.0, 6656.0, 8191.0, 1355.0, 6894.0, 29.0, 52.0]#re2
+# v_min = [-7288.0, -1728.0, -4523.0, -1398.0, -7824.0, -1403.0, -1154.0, -7083.0, -6609.0, -7484.0, -3489.0, -7913.0, -930.0, -6861.0, 14.0, -20.0]#re2
+v_max = [7704.0, 7817.0, 7797.0, 7870.0, 7776.0, 7812.0, 7815.0, 7815.0, 7816.0, 7816.0, 7809.0, 8191.0, 7745.0, 7772.0, 31.0, 55.0]#re3
+v_min = [-7659.0, -7954.0, -7978.0, -7921.0, -7943.0, -7938.0, -7976.0, -7997.0, -7874.0, -8061.0, -7916.0, -8047.0, -7891.0, -7969.0, 0.0, -20.0]#re3
 #==============================================================================================
 
 sensor_bits = {
@@ -356,10 +358,11 @@ class Emotiv(object):
         iter = 0
 
         if self.display_output:
+            # tstart = time.time()
             while self.running:
                 iter = iter + 1
 
-                os.system('cls')
+                # os.system('cls')
                 # print("Data in Queue: ", str(tasks.qsize()))
                 # print("Packets Received: ", self.packets_received, "Packets Processed:", self.packets_processed)
                 # print('\n'.join("%s Reading: %s Quality: %s" %
@@ -367,22 +370,32 @@ class Emotiv(object):
                 #                  self.sensors[k[1]]['quality']) for k in enumerate(self.sensors)))
                 # print("Battery: ", g_battery)
 
-                plot_num = 0
-                for row in ax:
-                    for col in row:
-                        for i, v in enumerate(self.sensors):
-                            if i == plot_num:
-                                record[i] = np.append(record[i], self.sensors[v]['value'])
-                                # col.cla()
-                                # col.plot(record[i][-50:-1])
+                # plot_num = 0
+                # for row in ax:
+                #     for col in row:
+                for i, v in enumerate(self.sensors):
+                    if i is not 16:
+                        record[i].append(self.sensors[v]['value'])
 
-                        plot_num = plot_num + 1
+                # print(len(record[15]))
+                        # col.cla()
+                        # col.plot(record[i][-50:-1])
+                # if (len(record[15])) > 6000:
+                #     np.save('try.npy', np.array(record))
+                #     del record
+                #     record = np.zeros((16, 1))
+                #     record = record.tolist()
+
+                # plot_num = plot_num + 1
 # ============================================================================
-                if iter % 520 == 0:
+                if (len(record[15])) % 512 == 0:
+
+                    # tend = time.time()
+                    # print(time.time()-tstart)
                     for time_step in range(0, 512, 1):
-                        for slicestart in range(0, 1, 1):  # 一維去頭去尾之512_t1
-                            for ch in range(0, 16, 1):  # ch
-                                new_record.append(record[ch][slicestart])
+                          # 一維去頭去尾之512_t1
+                        for ch in range(0, 16, 1):  # ch
+                            new_record.append(record[ch][time_step])
                                  # 3Dshape(深度,行,列)
                     # np.save('record_r5.npy', record)
                     # ============================================================================================
@@ -391,26 +404,30 @@ class Emotiv(object):
 
                     # ===================================================================================================
                     for ch_num in range(0, 16):
-                        new_record_3d[:, :, ch_num] = ((new_record_3d[:, :, ch_num]) - add[ch_num]) / (reduce[ch_num])
+                        if (v_max[ch_num] - v_min[ch_num]) == 0:
+                            new_record_3d[:, :, ch_num] = ((new_record_3d[:, :, ch_num]) - v_min[ch_num])
+                        else:
+                            new_record_3d[:, :, ch_num] = ((new_record_3d[:, :, ch_num]) - v_min[ch_num]) / (v_max[ch_num]-v_min[ch_num])
                     # =================================================================================================
 
                     prediction = model.predict(new_record_3d)
-                    winsound.PlaySound("*",winsound.SND_ALIAS)
+                    print(np.round(prediction[-1]))
+                    # print(np.round(prediction))
 
-                    if prediction[0, 0] > prediction[0, 1]:  # change to 1,0   0,1
-                        prediction[0, 0] = 1
-                        prediction[0, 1] = 0
 
-                    else:
-                        prediction[0, 0] = 0
-                        prediction[0, 1] = 1
-                    print(prediction)
-# ==========================================================================================轉0到1數值MAX，MIN
+                    del record
+                    record = np.zeros((16, 1))
+                    record = record.tolist()
+
+                gevent.sleep(0.03)
+
+
+
 
                 # record = np.array(record)
                 # plt.draw()
                 # plt.pause(0.03)
-                gevent.sleep(0.03)
+
 
 # ============================================================ __MAIN__
 if __name__ == "__main__":

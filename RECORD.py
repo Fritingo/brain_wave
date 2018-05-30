@@ -344,42 +344,57 @@ class Emotiv(object):
         if self.display_output:
             tstart = time.time()
 
-            record_num=0
-            record_name = 'delete' + str(record_num) + '.npy'
+            record_num=1
+            record_name = '1_' + str(record_num) + '.npy'
             while self.running:
                 iter = iter + 1
 
                 # os.system('cls')
                 # print("Data in Queue: ", str(tasks.qsize()))
                 # print("Packets Received: ", self.packets_received, "Packets Processed:", self.packets_processed)
-                # print('\n'.join("%s Reading: %s Quality: %s" %
-                #                 (k[1], self.sensors[k[1]]['value'],
-                #                  self.sensors[k[1]]['quality']) for k in enumerate(self.sensors)))
+                print('\n'.join("%s Reading: %s Quality: %s" %
+                                (k[1], self.sensors[k[1]]['value'],
+                                 self.sensors[k[1]]['quality']) for k in enumerate(self.sensors)))
                 # print("Battery: ", g_battery)
 
                 for i, v in enumerate(self.sensors):
-                    if i is not 16:
+                    if i < 16:
                         record[i].append(self.sensors[v]['value'])
+                print(len(record[15]))
 
-                if iter % 520 == 0:
+                        # print(self.sensors[v]['value'])
+                # if iter % 520 == 0:
 
-                    # print(record_num)
-                    tend = time.time()
-                    time512_step=tend - tstart
-                    # print(tend - tstart)
+                # if (len(record[15])) > 2000:
+                #     print(time.time() - tstart)
+                #     tstart = time.time()
+                #     np.save(record_name, np.array(record))
+                #     record_num = record_num + 1
+                #     record_name = '1_'+str(record_num)+'.npy'
+                #     del record
+                #     record = np.zeros((16, 1))
+                #     record = record.tolist()
+
+                #     # print(record_num)
+                #     tend = time.time()
+                #     time512_step=tend - tstart
+                #     print(tend - tstart)
                     # if time512_step < 0.005:
                     #     print(np.shape(record))
-                    if time512_step > 0.005:
-                            np.save(record_name, np.array(record))
-                            record_num = record_num + 1
-                            record_name = 'delete'+str(record_num)+'.npy'
-                            del record
-                            record = np.zeros((16, 1))
-                            record = record.tolist()
 
-                            # print(np.shape(record))
-                    #     # print(time512_step)
-                    tstart = time.time()
+                    # if record > 1.005:
+                    #     # print(np.shape(record))
+                    #     np.save(record_name, np.array(record))
+                    #     record_num = record_num + 1
+                    #     record_name = 'delete'+str(record_num)+'.npy'
+                    #     del record
+                    #     record = np.zeros((14, 1))
+                    #     record = record.tolist()
+                #
+                #             # print(np.shape(record))
+                #     #     # print(time512_step)
+                # tstart = time.time()
+                gevent.sleep(0.03)
 
 
 
