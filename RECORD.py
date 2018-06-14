@@ -199,7 +199,7 @@ class Emotiv(object):
                 if device.product_name == 'Brain Computer Interface USB Receiver/Dongle':
 
                     print("\n", device.product_name, " Found!\n")
-                    useDevice = input("Use this device? [Y]es? ")
+                    # useDevice = input("Use this device? [Y]es? ")
 
                     # if useDevice.upper() == "Y":
                     devicesUsed += 1
@@ -210,7 +210,7 @@ class Emotiv(object):
                 # elif device.product_name == 'EPOC BCI':
                 elif device.product_name == 'EEG Signals':
                     print("\n", device.product_name, " Found!\n")
-                    useDevice = input("Use this device? [Y]es? ")
+                    # useDevice = input("Use this device? [Y]es? ")
                     # if useDevice.upper() == "Y":
                     devicesUsed += 1
                     devices.append(device)
@@ -220,7 +220,7 @@ class Emotiv(object):
                 elif device.product_name == '00000000000':
 
                     print("\n", device.product_name, " Found!\n")
-                    useDevice = input("Use this device? [Y]es? ")
+                    # useDevice = input("Use this device? [Y]es? ")
 
                     # if useDevice.upper() == "Y":
                     devicesUsed += 1
@@ -232,7 +232,7 @@ class Emotiv(object):
                 elif device.product_name == 'EPOC+':
 
                     print("\n", device.product_name, " Found!\n")
-                    useDevice = input("Use this device? [Y]es? ")
+                    # useDevice = input("Use this device? [Y]es? ")
 
                     # if useDevice.upper() == "Y":
                     devicesUsed += 1
@@ -321,7 +321,7 @@ class Emotiv(object):
                 gevent.sleep(0)
             gevent.sleep(0)
 
-    input("Press Enter to continue...")
+    # input("Press Enter to continue...")
 
     # ====================================================== DEQUEUE
     def dequeue(self):
