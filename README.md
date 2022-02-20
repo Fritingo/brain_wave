@@ -1,1 +1,1 @@
-# brain_wave
+# brain_wave prediction with cnn
